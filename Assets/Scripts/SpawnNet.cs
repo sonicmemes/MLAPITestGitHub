@@ -15,12 +15,12 @@ public class SpawnNet : NetworkBehaviour
     }
     private void Update()
     {
-       // [ServerRpc(RequireOwnership = false)]
+        // [ServerRpc(RequireOwnership = false)]
         if (!IsLocalPlayer)
-          {
-              return;
-          }
-        
+        {
+            return;
+        }
+
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
@@ -34,12 +34,11 @@ public class SpawnNet : NetworkBehaviour
 
         }
 
-     /*   if (Input.GetKeyDown(KeyCode.N))
+          if (Input.GetKeyDown(KeyCode.N))
 
-        {
-            GetComponent<NetworkObject>().ChangeOwnership(OwnerClientId);
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }*/
+           {
+            ChangeOwnerShipServerRpc();
+           }
     }
 
 
@@ -58,21 +57,24 @@ public class SpawnNet : NetworkBehaviour
 
              prop.ChangeOwnership(OwnerClientId);
              Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-         }
+         }*/
 
 
 
-     }*/
-      //  [ServerRpc(RequireOwnership = false)]
+    }
+    [ServerRpc(RequireOwnership = false)]
 
-        //private void ChangeOwnerShipServerRpc()
-        {
-            GetComponent<NetworkObject>().ChangeOwnership(OwnerClientId);
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
-          
+    private void ChangeOwnerShipServerRpc()
+    {
+        GetComponent<NetworkObject>().ChangeOwnership(OwnerClientId);
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     }
 }
+
+        
+          
+    
+
 
     
 
